@@ -1,0 +1,48 @@
+import sys 
+import random
+
+from time import sleep 
+
+words="this is just a fun game to guess the no's:"
+
+for char in words:
+    sleep(0.05)
+
+    sys.stdout.write(char)
+    sys.stdout.flush()
+
+sleep(0.5)
+
+
+
+numtoguess=random.randint(1,100)
+numoffries=10
+for i in range(numoffries):
+    sen1="please get a better number between 1 and 100:"
+    for char in sen1:
+        sleep(0.05)
+        sys.stdout.write(char)
+        sys.stdout.flush()
+    guesseddhum=int(input())
+
+
+    if guesseddhum < numtoguess:
+        print("guess higher please!")
+    elif  guesseddhum > numtoguess:
+        print("guess lower please!")
+    elif  guesseddhum == numtoguess:  
+        print("u are a pro bro.. great.. keep it up!",i+1,"tries to guess it right man!")
+        break
+
+        if numoffries>0:
+            sen2:"u are genius "
+            for char in sen2:
+                sleep(0.05)
+                sys.stdout.write(char)
+                sys.stdout.flush()
+        else:
+            sen3="would u like to play again once more!"
+            for char in sen3:
+                sleep(0.05)
+                sys.stdout.write(char)
+                sys.stdout.flush()   
