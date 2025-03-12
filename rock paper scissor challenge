@@ -1,1 +1,33 @@
-https://www.programiz.com/online-compiler/6FWYw37tA90TV
+import random 
+
+play=input("\nwhat do you choose:rock,paper or scissor?:").lower()
+c=random.randint(1,3)
+if c==1:
+     comp="rock"
+elif c==2:
+      comp="paper"
+else:
+   comp="scissor"
+print("the computer choose:",comp)
+if play=="rock"and comp=="paper":
+    print("comp wins")
+    
+elif play=="rock"and comp=="scissor":
+    print("you wins")
+
+elif play=="paper"and comp=="rock":
+    print("you wins")
+    
+elif play=="paper"and comp=="scissor":
+    print("comp wins")
+     
+elif play=="scissor"and comp=="paper":
+    print("you wins")
+     
+elif play=="scissor"and comp=="rock":
+    print("comp wins")
+    
+else:
+    print("its a tie")
+
+   
