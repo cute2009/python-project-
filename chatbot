@@ -1,0 +1,107 @@
+import random
+n = input("Hello user. What is your name? Enter: ")
+print("Nice to meet you,", n)
+def stories():
+    while True:
+        s = input("""The Secret Cave: You’re hiking in the mountains when you stumble upon a
+hidden cave. The entrance is covered with vines, but a faint light glows from within. Curiosity
+takes over. You step inside and find two tunnels. One is lit by glowing crystals, the other is
+dark but you hear a distant sound, like water flowing.
+Do you:
+1. Follow the crystal-lit tunnel?
+2. Explore the dark tunnel with the sound of water?
+Enter (1,2): """)
+        if s == "1":
+            print('If you choose the crystal-lit tunnel: You follow the glowing crystals, and they lead you to a beautiful underground garden. In the middle is a stone pedestal with an ancient book on it. The book pulses with a soft glow, and as you approach, words appear on the cover: "The Secrets of the Mountains." You’ve found a treasure of ancient knowledge!')
+            break
+        elif s == "2":
+            print('If you choose the dark tunnel: You venture into the darkness, carefully moving toward the sound of water. Soon, you find an underground river with a small boat tied to the shore. A note reads: "This boat will take you to hidden lands – but only for the brave." You take the boat and drift into unknown waters, ready for the next adventure!')
+            break
+        else:
+            print('Invalid input. Please enter 1 or 2.')
+    print("You’ve reached the end, but each path leads to new discoveries!")
+def game1():
+    user_choice = input("Enter rock, paper, or scissors: ")
+    computer_choice = random.choice(["rock", "paper", "scissors"])
+    print("Blocky chose:", computer_choice)
+    if user_choice == computer_choice:
+        print("It's a tie!")
+    elif (user_choice == "rock" and computer_choice == "scissors") or (user_choice ==
+"scissors" and computer_choice == "paper") or (user_choice == "paper" and
+computer_choice == "rock"):
+        print("You win!")
+    else:
+        print("Computer wins!")
+def quizz():
+    print("Let the general knowledge quiz begin!")
+    score = 0
+
+    lives = 3
+    q = {"1":{"question":"What is the capital of France? ",
+"answer":"paris"},
+"2":{"question":"Which planet is known as the Red Planet? ",
+"answer": "mars"},
+"3":{"question":"What is the largest mammal in the world? ",
+"answer":"blue whale"},
+"4":{"question":"What is 8 x 7? ",
+"answer":"56"},
+"5":{"question":"How many players are there in a standard football (soccer) team? ",
+"answer":"11"},
+"6":{"question":"Who wrote the novel 1984? ",
+"answer":"George Orwell"}}
+    for i in range(1,5):
+        ques = random.choice(list(q.keys()))
+        while lives != 0:
+            qi = input(q[ques]["question"]).lower()
+            if qi in q[ques]["answer"]:
+                print("Correct! Good Job!")
+                score += 1
+                break
+            else:
+                print("Sorry your answer is wrong! Try again?")
+                lives -= 1
+                print(f"You have {lives} lives left.")
+    print(f"Your score is {score}!")
+TS = {"forecast": {"keywords": ["weather", "temperature", "forecast"],
+
+"responses": {"temp": ["hot", "warm", "cold", "freezing", "freezing cold"],
+"weather": ["sunny", "rainy", "stormy", "cloudy", "slightly cloudy",
+
+"snowing"]}},
+"jokes": {"keywords": ["joke", "jokes", "funny", "new"],
+"responses": ["Why don’t skeletons fight each other? They don’t have the guts!",
+"What did the ocean say to the shore? Nothing, it just waved!", "Why did the bicycle fall over? Because it was two-tired!", "Why don’t eggs tell jokes? Because they might crack up!",
+"What do you call a fake noodle? An impasta!"]},
+"game": {"keywords": ["rock, paper scissors", "game", "fun"]},
+"story": {"keywords": ["story", "stories", "plot", "bored", "entertain"]},
+"end": {"keywords": ["bye", "byebye", "see you", "go"],
+"responses": ["Thank you for playing with Blocky!", f"Bye, {n}!", f"Have a great day, {n}!"]},
+"quiz": {"keywords": ["gk", "general knowledge", "test", "quiz", "challenge"]}}
+def respond(user_input):
+    for category in TS.keys():
+        for keyword in TS[category]["keywords"]:
+            if keyword in user_input.lower():
+                if category == "story":
+
+                    stories()
+                elif category == "game":
+                    game1()
+                elif category == "end":
+                    print(random.choice(TS[category]["responses"]))
+                elif category == "jokes":
+                    print(random.choice(TS[category]["responses"]))
+                else:
+                    temp_response = random.choice(TS["forecast"]["responses"]["temp"])
+                    weather_response = random.choice(TS["forecast"]["responses"]["weather"])
+                    if category == "forecast":
+                        print(f"Today's forecast: {temp_response} and {weather_response}.")
+                if category == "quiz":
+                    quizz()
+while True:
+    k = input("""I'm Blocky, your own AI assistant. What would you like to learn today?
+I can tell you the weather, tell you jokes, play rock paper scissors, tell you a story and give
+you a quiz. Enter: """)
+    respond(k)
+    if k in TS["end"]["keywords"]:
+        break
+print("\n\n")
